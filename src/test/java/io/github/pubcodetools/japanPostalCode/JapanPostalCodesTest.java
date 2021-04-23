@@ -1,4 +1,4 @@
-package com.github.pubcodetools.japanPostalCode;
+package io.github.pubcodetools.japanPostalCode;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;

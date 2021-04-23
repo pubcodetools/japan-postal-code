@@ -1,4 +1,4 @@
-package com.github.pubcodetools.japanPostalCode;
+package io.github.pubcodetools.japanPostalCode;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeAll;

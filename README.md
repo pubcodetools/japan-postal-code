@@ -9,7 +9,7 @@ You can get japan postal code information (postal code, prefecture, city, street
   ...
   <dependencies>
     <dependency>
-      <groupId>com.github.pubcodetools</groupId>
+      <groupId>io.github.pubcodetools</groupId>
       <artifactId></artifactId>
       <version>0.0.1</version>
     </dependency>
@@ -20,5 +20,5 @@ You can get japan postal code information (postal code, prefecture, city, street
 ## Where is sample codes?
 You can get sample codes [here](https://github.com/pubcodetools/japan-postal-code-sample).
 
-## Where is the original japan postal code data
+## Where is the original japan postal code data?
 You can get data [here](https://www.post.japanpost.jp/zipcode/download.html).
