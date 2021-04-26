@@ -1,0 +1,55 @@
+version: 2.1
+
+orbs:
+  maven: circleci/maven@1.1
+  sonatype: sonatype-nexus-community/circleci-maven-release-orb@0.0.16
+  sonatype-dryrun: sonatype-nexus-community/circleci-maven-release-orb@0.0.16
+
+executors:
+  openjdk8:
+    docker:
+      - image: circleci/openjdk:8-jdk
+
+jobs:
+  notify:
+    executor: openjdk8
+    steps:
+      - run: echo "notify"
+
+workflows:
+  maven_release:
+    jobs:
+      - maven/test:
+          executor: openjdk8
+          command: test
+      - sonatype-dryrun/run-maven-release:
+          filters:
+            branches:
+              only: main
+          requires:
+            - maven/test
+          mvn-release-perform-command: |
+            mvn --batch-mode release:perform -DdryRun=true -s .circleci/.maven.xml
+          mvn-release-prepare-command: |
+            mvn --batch-mode release:prepare -DscmCommentPrefix="[skip ci][maven-release-plugin] " -DdryRun=true -s .circleci/.maven.xml
+          ssh-fingerprints: 68:c0:1b:f2:32:d4:0d:c5:6f:56:1e:d8:c4:54:56:c9
+      - notify:
+          filters:
+            branches:
+              only: main
+          requires:
+            - sonatype-dryrun/run-maven-release
+      - approve:
+          type: approval
+          filters:
+            branches:
+              only: main
+          requires:
+            - notify
+      - sonatype/run-maven-release:
+          filters:
+            branches:
+              only: main
+          requires:
+            - approve
+          ssh-fingerprints: 68:c0:1b:f2:32:d4:0d:c5:6f:56:1e:d8:c4:54:56:c9
