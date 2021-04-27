@@ -17,9 +17,17 @@ jobs:
       - run: echo "notify"
 
 workflows:
+  maven_test:
+    jobs:
+      - maven/test:
+          executor: openjdk8
+          command: package
   maven_release:
     jobs:
       - maven/test:
+          filters:
+            branches:
+              only: main
           executor: openjdk8
           command: test
       - sonatype-dryrun/run-maven-release:
