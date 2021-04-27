@@ -20,6 +20,9 @@ workflows:
   maven_test:
     jobs:
       - maven/test:
+          filters:
+            branches:
+              ignore: main
           executor: openjdk8
           command: package
   maven_release:
