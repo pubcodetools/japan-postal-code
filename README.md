@@ -11,7 +11,7 @@ You can get japan postal code information (postal code, prefecture, city, street
     <dependency>
       <groupId>io.github.pubcodetools</groupId>
       <artifactId></artifactId>
-      <version>0.0.1</version>
+      <version>0.0.3</version>
     </dependency>
   </dependencies>
 </project>
