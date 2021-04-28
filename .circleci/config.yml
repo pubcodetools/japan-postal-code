@@ -106,5 +106,5 @@ workflows:
       - sonatype/run-maven-release:
           <<: *main_ignore
           requires:
-            - approve
+            - sonatype-dryrun/run-maven-release
           ssh-fingerprints: 68:c0:1b:f2:32:d4:0d:c5:6f:56:1e:d8:c4:54:56:c9
