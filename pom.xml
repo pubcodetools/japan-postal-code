@@ -174,8 +174,10 @@
                 <version>0.13</version>
                 <configuration>
                     <excludes>
+                        <exclude>*README*</exclude>
                         <exclude>.gitignore</exclude>
                         <exclude>.circleci/*</exclude>
+                        <exclude>**/*.json</exclude>
                     </excludes>
                 </configuration>
             </plugin>
@@ -212,6 +214,11 @@
                 <configuration>
                     <propertyName>surefireArgLine</propertyName>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.9.1</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
