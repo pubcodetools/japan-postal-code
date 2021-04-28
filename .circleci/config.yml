@@ -93,9 +93,9 @@ workflows:
   release:
     jobs:
       - build:
-          <<: *main_only
+          <<: *main_ignore
       - sonatype-dryrun/run-maven-release:
-          <<: *main_only
+          <<: *main_ignore
           requires:
             - build
           mvn-release-perform-command: |
@@ -103,17 +103,8 @@ workflows:
           mvn-release-prepare-command: |
             mvn --batch-mode release:prepare -DscmCommentPrefix="[skip ci][maven-release-plugin] " -DdryRun=true -s .circleci/.maven.xml
           ssh-fingerprints: 68:c0:1b:f2:32:d4:0d:c5:6f:56:1e:d8:c4:54:56:c9
-      - notify:
-          <<: *main_only
-          requires:
-            - sonatype-dryrun/run-maven-release
-      - approve:
-          type: approval
-          <<: *main_only
-          requires:
-            - notify
       - sonatype/run-maven-release:
-          <<: *main_only
+          <<: *main_ignore
           requires:
             - approve
           ssh-fingerprints: 68:c0:1b:f2:32:d4:0d:c5:6f:56:1e:d8:c4:54:56:c9
