@@ -86,11 +86,11 @@ custom_filters:
         ignore: main
 
 workflows:
-  test:
+  build-and-test:
     jobs:
       - build:
           <<: *main_ignore
-  release:
+  run-release:
     jobs:
       - build:
           <<: *main_only
