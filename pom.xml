@@ -4,7 +4,7 @@
 
     <groupId>io.github.pubcodetools</groupId>
     <artifactId>japan-postal-code</artifactId>
-    <version>0.0.5-SNAPSHOT</version>
+    <version>0.0.5_old-0.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>japan-postal-code</name>
@@ -226,7 +226,46 @@
                 <version>2.5.3</version>
                 <configuration>
                     <releaseProfiles>gpg-sign</releaseProfiles>
+                    <releaseVersion>${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.incrementalVersion}_old-0.0.0</releaseVersion>
+                    <developmentVersion>${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.nextIncrementalVersion}_old-0.0.0-SNAPSHOT</developmentVersion>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <phase>validate</phase>
+                        <id>parse-version</id>
+                        <goals>
+                            <goal>parse-version</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>3.0.0</version>
+                <executions>
+                    <execution>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <echo>Major: ${parsedVersion.majorVersion}</echo>
+                                <echo>Minor: ${parsedVersion.minorVersion}</echo>
+                                <echo>Incremental: ${parsedVersion.incrementalVersion}</echo>
+                                <echo>Qualifier: ${parsedVersion.qualifier}</echo>
+                                <echo>BuildNumber: ${parsedVersion.buildNumber}</echo>
+                                <echo>nextIncremental: ${parsedVersion.nextIncrementalVersion}</echo>
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

@@ -76,26 +76,30 @@ jobs:
       - run: echo "notify"
 
 custom_filters:
-  main_only: &main_only
+  main_only: &merge_only
     filters:
       branches:
-        only: main
-  main_ignore: &main_ignore
+        only:
+          - main
+          - old-0.0.0
+  main_ignore: &merge_ignore
     filters:
       branches:
-        ignore: main
+        ignore:
+          - main
+          - old-0.0.0
 
 workflows:
   build-and-test:
     jobs:
       - build:
-          <<: *main_ignore
+          <<: *merge_ignore
   run-release:
     jobs:
       - build:
-          <<: *main_only
+          <<: *merge_only
       - sonatype-dryrun/run-maven-release:
-          <<: *main_only
+          <<: *merge_only
           requires:
             - build
           mvn-release-perform-command: |
@@ -104,16 +108,16 @@ workflows:
             mvn --batch-mode release:prepare -DscmCommentPrefix="[skip ci][maven-release-plugin] " -DdryRun=true -s .circleci/.maven.xml
           ssh-fingerprints: 68:c0:1b:f2:32:d4:0d:c5:6f:56:1e:d8:c4:54:56:c9
       - notify:
-          <<: *main_only
+          <<: *merge_only
           requires:
             - sonatype-dryrun/run-maven-release
       - approve:
           type: approval
-          <<: *main_only
+          <<: *merge_only
           requires:
             - notify
       - sonatype/run-maven-release:
-          <<: *main_only
+          <<: *merge_only
           requires:
             - approve
           ssh-fingerprints: 68:c0:1b:f2:32:d4:0d:c5:6f:56:1e:d8:c4:54:56:c9
