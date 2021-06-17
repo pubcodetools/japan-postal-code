@@ -103,7 +103,7 @@ workflows:
           requires:
             - build
           mvn-release-perform-command: |
-            mvn --batch-mode validate release:perform -DdryRun=true -s .circleci/.maven.xml
+            mvn --batch-mode release:perform -DdryRun=true -s .circleci/.maven.xml
           mvn-release-prepare-command: |
             mvn --batch-mode validate release:prepare -DscmCommentPrefix="[skip ci][maven-release-plugin] " -DdryRun=true -s .circleci/.maven.xml
           ssh-fingerprints: 68:c0:1b:f2:32:d4:0d:c5:6f:56:1e:d8:c4:54:56:c9
@@ -121,7 +121,7 @@ workflows:
           requires:
             - approve
           mvn-release-perform-command: |
-            mvn --batch-mode validate release:perform -s .circleci/.maven.xml
+            mvn --batch-mode release:perform -s .circleci/.maven.xml
           mvn-release-prepare-command: |
             mvn --batch-mode validate release:prepare -DscmCommentPrefix="[skip ci][maven-release-plugin] " .circleci/.maven.xml
           ssh-fingerprints: 68:c0:1b:f2:32:d4:0d:c5:6f:56:1e:d8:c4:54:56:c9
