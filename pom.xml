@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>io.github.pubcodetools</groupId>
-    <artifactId>japan-postal-code</artifactId>
+    <artifactId>japan-postal-code_2.11</artifactId>
     <version>0.0.8_old-0.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
