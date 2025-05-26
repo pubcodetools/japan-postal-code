@@ -250,14 +250,14 @@
                                     <goal>sign</goal>
                                 </goals>
                             </execution>
-                            <configuration>
-                              <gpgArguments>
+                        </executions>
+                        <configuration>
+                            <gpgArguments>
                                 <arg>--pinentry-mode</arg>
                                 <arg>loopback</arg>
-                              </gpgArguments>
-                              <passphraseEnvName>MAVEN_GPG_PASSPHRASE</passphraseEnvName>
-                            </configuration>
-                        </executions>
+                            </gpgArguments>
+                            <passphraseEnvName>MAVEN_GPG_PASSPHRASE</passphraseEnvName>
+                        </configuration>
                     </plugin>
                 </plugins>
             </build>
