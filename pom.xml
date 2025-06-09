@@ -71,7 +71,7 @@
                 <version>0.7.0</version>
                 <executions>
                     <execution>
-                        <phase>deploy</deploy>
+                        <phase>deploy</phase>
                         <goals>
                           <goal>publish</goal>
                         </goals>
