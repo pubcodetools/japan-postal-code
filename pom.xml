@@ -29,6 +29,7 @@
         <tag>HEAD</tag>
     </scm>
 
+    <!--
     <distributionManagement>
         <snapshotRepository>
             <id>ossrh</id>
@@ -39,6 +40,7 @@
             <url>https://ossrh-staging-api.central.sonatype.com/service/local/staging/deploy/maven2/</url>
         </repository>
     </distributionManagement>
+    -->
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -63,6 +65,23 @@
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.sonatype.central</groupId>
+                <artifactId>central-publishing-maven-plugin</artifactId>
+                <version>0.7.0</version>
+                <executions>
+                    <execution>
+                        <phase>deploy</deploy>
+                        <goals>
+                          <goal>publish</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <extensions>true</extensions>
+                <configuration>
+                    <publishingServerId>central</publishingServerId>
+                </configuration>
+            </plugin>
             <!--
             <plugin>
                 <groupId>org.sonatype.plugins</groupId>
