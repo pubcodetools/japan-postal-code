@@ -4,7 +4,7 @@
 
     <groupId>io.github.pubcodetools</groupId>
     <artifactId>japan-postal-code</artifactId>
-    <version>0.0.14</version>
+    <version>0.0.15-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>japan-postal-code</name>
@@ -26,7 +26,7 @@
     <scm>
         <url>https://github.com/pubcodetools/japan-postal-code</url>
         <connection>scm:git:https://github.com/pubcodetools/japan-postal-code.git</connection>
-        <tag>japan-postal-code-0.0.14</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <!--
