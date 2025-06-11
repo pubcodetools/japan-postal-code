@@ -253,7 +253,7 @@
         <profile>
             <id>gpg-sign</id>
             <!--
-            only sign during deploy phase migration
+            only sign during deploy phase
             -->
             <build>
                 <plugins>
